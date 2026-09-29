@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMUL | AI Demand & Distribution Intelligence Platform</title>
+  <meta name="description" content="AI-assisted demand forecasting, cold-chain replenishment, customer RFM intelligence, and automated analytics for Amul (GCMMF)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --amul-red: #D32F2F;
+      --amul-dark-red: #B71C1C;
+      --amul-navy: #1A237E;
+      --amul-blue: #0D47A1;
+      --bg-dark: #0B0F19;
+      --card-bg: #141C2E;
+      --card-border: #23314E;
+      --text-white: #FFFFFF;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --accent-green: #10B981;
+      --accent-gold: #F59E0B;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--amul-red), var(--amul-dark-red));
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--amul-red), var(--amul-dark-red));
+      color: white;
+      box-shadow: 0 4px 14px rgba(211, 47, 47, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-white);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--text-muted);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(211, 47, 47, 0.15);
+      border: 1px solid rgba(211, 47, 47, 0.3);
+      color: #FF8A80;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #EF5350, #E53935);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Notice Banner */
+    .notice-card {
+      background: rgba(26, 35, 126, 0.25);
+      border: 1px solid rgba(26, 35, 126, 0.5);
+      border-left: 4px solid var(--amul-red);
+      padding: 1.25rem;
+      border-radius: 8px;
+      text-align: left;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      font-size: 0.88rem;
+      color: #E2E8F0;
+    }
+
+    /* Architecture Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      border-color: rgba(211, 47, 47, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-white);
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      background: rgba(16, 185, 129, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      align-self: flex-start;
+    }
+
+    /* Deployment Options Guide */
+    .deploy-section {
+      background: rgba(20, 28, 46, 0.6);
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      padding: 4rem 2rem;
+    }
+
+    .deploy-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .deploy-heading {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .deploy-sub {
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .code-box {
+      background: #06090F;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      color: #38BDF8;
+      font-size: 0.88rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <a href="#" class="brand">
+      <span class="brand-badge">AMUL</span>
+      <span class="brand-title">AI Demand & Distribution Intelligence</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://github.com" target="_blank" id="btn-github-nav" class="btn btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        GitHub Repository
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero">
+    <div class="hero-tag">
+      <span>●</span> 16 Operational Modules • AI-Powered • MBA Capstone Standard
+    </div>
+    <h1 class="hero-title">
+      AMUL AI Demand & <span>Distribution Intelligence</span>
+    </h1>
+    <p class="hero-subtitle">
+      Enterprise decision-support layer for India's dairy cooperative network. Features multi-temperature inventory optimization, 7-day held-out ML demand forecasting, customer RFM segmentation, DPDPA 2023 email campaigns, and an evidence-based AI Analyst chatbot.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#deployment-guide" class="btn btn-primary">
+        🚀 View Deployment Instructions
+      </a>
+      <a href="#modules" class="btn btn-outline">
+        📊 Explore System Features
+      </a>
+    </div>
+
+    <!-- Academic Disclaimer -->
+    <div class="notice-card">
+      <strong>⚠️ Academic Demonstration & Synthetic Data Boundary:</strong><br />
+      This platform is an academic decision-support prototype engineered for MBA capstone evaluation. All operational distribution records and individual customer profiles are statistically realistic, explicitly labeled synthetic demonstration data. This project does NOT represent an official GCMMF production deployment.
+    </div>
+  </main>
+
+  <!-- Key Capabilities Grid -->
+  <section class="grid" id="modules">
+    <div class="card">
+      <div>
+        <div class="card-icon">📈</div>
+        <h3 class="card-title">Chronological ML Forecasting</h3>
+        <p class="card-desc">
+          Strict chronological train-test split (zero lookahead leakage) comparing Gradient Boosting, Random Forest, and Ridge regression against a 7-day Seasonal Naive baseline with 80% prediction intervals.
+        </p>
+      </div>
+      <span class="card-tag">Held-Out Test Validation</span>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-icon">❄️</div>
+        <h3 class="card-title">Multi-Temperature Inventory</h3>
+        <p class="card-desc">
+          Calibrated safety stock and reorder point formulas across Fresh (2-4°C, 48h shelf life), Chilled (0-4°C), Frozen (-18°C), and Ambient dairy channels to minimize stockouts and avoid souring.
+        </p>
+      </div>
+      <span class="card-tag">Thermodynamic Rules</span>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-icon">👥</div>
+        <h3 class="card-title">Customer-Wise RFM Intelligence</h3>
+        <p class="card-desc">
+          120 synthetic customer profiles categorized into Loyal, High-Value, New, and Declining segments. Recommends explainable next-best actions with human-in-the-loop approval workflows.
+        </p>
+      </div>
+      <span class="card-tag">Customer Intelligence</span>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-icon">💬</div>
+        <h3 class="card-title">Amul AI Analyst Chatbot</h3>
+        <p class="card-desc">
+          Conversational agent backed by deterministic, audited calculation tools over active distribution records. Guarantees zero hallucinations and complete data lineage for every metric.
+        </p>
+      </div>
+      <span class="card-tag">Audited Calculations</span>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-icon">✉️</div>
+        <h3 class="card-title">DPDPA 2023 Campaign Centre</h3>
+        <p class="card-desc">
+          Multi-channel email and in-app communications adhering strictly to India's Digital Personal Data Protection Act (DPDPA 2023) and TRAI quiet hours guardrails (9 PM to 9 AM IST).
+        </p>
+      </div>
+      <span class="card-tag">Regulatory Compliance</span>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-icon">📑</div>
+        <h3 class="card-title">Downloadable MBA-Grade PDF Report</h3>
+        <p class="card-desc">
+          Automated publication-grade ReportLab Platypus PDF generator compiling executive KPIs, high-res distribution charts, customer RFM tables, and verified government citations.
+        </p>
+      </div>
+      <span class="card-tag">Automated ReportLab Engine</span>
+    </div>
+  </section>
+
+  <!-- Deployment Options Section -->
+  <section class="deploy-section" id="deployment-guide">
+    <div class="deploy-container">
+      <h2 class="deploy-heading">Deployment & Launch Guide</h2>
+      <p class="deploy-sub">Follow these instructions to run locally or deploy to GitHub and the cloud.</p>
+
+      <h3 style="color: #EF5350; margin-top: 1.5rem; font-size: 1.3rem;">Option 1: Push to GitHub & Run with Streamlit Community Cloud (Recommended)</h3>
+      <p style="color: var(--text-muted); margin-top: 0.5rem;">
+        Streamlit is a stateful web application that requires continuous WebSockets. <strong>Streamlit Community Cloud</strong> connects natively to your GitHub repository for free 1-click hosting:
+      </p>
+      <div class="code-box">
+# 1. Create a new repository on https://github.com/new
+# 2. In your terminal, link and push to your GitHub repo:
+git remote add origin https://github.com/YOUR_USERNAME/amul-demand-intelligence.git
+git branch -M main
+git push -u origin main
+
+# 3. Visit https://share.streamlit.io, connect your GitHub account,
+# select repository 'amul-demand-intelligence', branch 'main', and main file 'app.py'.
+      </div>
+
+      <h3 style="color: #60A5FA; margin-top: 2rem; font-size: 1.3rem;">Option 2: Deploy Landing Portal on Vercel</h3>
+      <p style="color: var(--text-muted); margin-top: 0.5rem;">
+        This repository includes <code>vercel.json</code> configured to deploy this clean web portal directly on Vercel:
+      </p>
+      <div class="code-box">
+# Deploy with Vercel CLI or via GitHub integration:
+npx vercel deploy --prod
+      </div>
+
+      <h3 style="color: #34D399; margin-top: 2rem; font-size: 1.3rem;">Option 3: Run Full Interactive Dashboard Locally</h3>
+      <div class="code-box">
+# In Windows PowerShell:
+cd C:\Users\harsh\.gemini\antigravity-ide\scratch\amul-demand-intelligence
+pip install -r requirements.txt
+streamlit run app.py
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>AMUL | AI Demand & Distribution Intelligence System • Academic Decision-Support Prototype</p>
+    <p style="margin-top: 6px;">Adheres to DPDPA 2023 & TRAI TCCCPR standards • Synthetic data demonstration</p>
+  </footer>
+
+</body>
+</html>

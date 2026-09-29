@@ -214,6 +214,52 @@ The application will launch in your browser at `http://localhost:8501`.
 
 ---
 
+## 🌐 Deployment Guide: GitHub, Streamlit Community Cloud & Vercel
+
+### 1. Push to GitHub
+Your local repository is already initialized and committed on the `main` branch. To link and push to your GitHub account:
+
+1. Create a new empty repository on [GitHub](https://github.com/new) (e.g., named `amul-demand-intelligence`). Do **not** initialize it with a README or .gitignore since we already have them.
+2. In PowerShell, link your local repository and push:
+   ```powershell
+   cd C:\Users\harsh\.gemini\antigravity-ide\scratch\amul-demand-intelligence
+   git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/amul-demand-intelligence.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+---
+
+### 2. Deploy Live Interactive Dashboard on Streamlit Community Cloud (Recommended)
+Because Streamlit is an interactive Python application relying on persistent WebSocket connections (`_stcore/stream`), **Streamlit Community Cloud** is the official, zero-cost, native hosting platform:
+1. Go to [share.streamlit.io](https://share.streamlit.io) and log in with your GitHub account.
+2. Click **"New app"**.
+3. Select your repository: `<YOUR_GITHUB_USERNAME>/amul-demand-intelligence`.
+4. Branch: `main`
+5. Main file path: `app.py`
+6. (Optional) Under **Advanced settings**, set any environment secrets (e.g. `GEMINI_API_KEY`).
+7. Click **"Deploy!"**. Your full 16-module interactive dashboard will be live on a public URL with automatic continuous deployment on every `git push`.
+
+---
+
+### 3. Deploy on Vercel
+This repository includes [`vercel.json`](file:///C:/Users/harsh/.gemini/antigravity-ide/scratch/amul-demand-intelligence/vercel.json) and an Amul-branded landing portal [`index.html`](file:///C:/Users/harsh/.gemini/antigravity-ide/scratch/amul-demand-intelligence/index.html) configured for immediate Vercel deployment:
+
+#### Method A: Via Vercel Web Dashboard (1-Click with GitHub)
+1. Go to [vercel.com](https://vercel.com) and log in with your GitHub account.
+2. Click **"Add New..."** -> **"Project"**.
+3. Import your `amul-demand-intelligence` repository from GitHub.
+4. Leave root directory as `./` and click **"Deploy"**.
+5. Vercel will instantly build and host the high-performance showcase portal.
+
+#### Method B: Via Vercel CLI
+```powershell
+# In PowerShell:
+npx -y vercel deploy --prod
+```
+
+---
+
 ## 📑 How to Generate and Download the PDF Report
 
 1. Open the application at `http://localhost:8501`.
