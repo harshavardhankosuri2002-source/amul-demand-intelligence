@@ -805,6 +805,15 @@ body {
   color: #F87171;
 }
 
+.map-data-caveat {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 290px;
+  line-height: 1.25;
+  text-align: center;
+}
+
 .map-tools-btn-group {
   display: flex;
   gap: 6px;

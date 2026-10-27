@@ -365,7 +365,10 @@ if "0. Distribution Intelligence Dashboard" in nav_module:
         </div>
     """, unsafe_allow_html=True)
     import streamlit.components.v1 as components
-    components.iframe("http://localhost:3000", height=920, scrolling=True)
+    if hasattr(st, "iframe"):
+        st.iframe("http://localhost:3000", height=920, scrolling=True)
+    else:
+        components.iframe("http://localhost:3000", height=920, scrolling=True)
 
 # ==========================================
 # MODULE 1: EXECUTIVE OVERVIEW
