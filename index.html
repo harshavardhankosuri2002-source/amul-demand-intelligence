@@ -3,467 +3,916 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AMUL | AI Demand & Distribution Intelligence Platform</title>
-  <meta name="description" content="AI-assisted demand forecasting, cold-chain replenishment, customer RFM intelligence, and automated analytics for Amul (GCMMF)." />
+  <title>Amul Distribution Intelligence Platform</title>
+  <meta name="description" content="AI-powered distribution planning, replenishment and market intelligence for Amul (GCMMF)." />
+  
+  <!-- Modern Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --amul-red: #D32F2F;
-      --amul-dark-red: #B71C1C;
-      --amul-navy: #1A237E;
-      --amul-blue: #0D47A1;
-      --bg-dark: #0B0F19;
-      --card-bg: #141C2E;
-      --card-border: #23314E;
-      --text-white: #FFFFFF;
-      --text-muted: #94A3B8;
-      --text-dim: #64748B;
-      --accent-green: #10B981;
-      --accent-gold: #F59E0B;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-white);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-
-    /* Header */
-    header {
-      border-bottom: 1px solid var(--card-border);
-      background: rgba(11, 15, 25, 0.85);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .brand-badge {
-      background: linear-gradient(135deg, var(--amul-red), var(--amul-dark-red));
-      color: white;
-      font-weight: 800;
-      font-size: 1.1rem;
-      padding: 4px 12px;
-      border-radius: 6px;
-      letter-spacing: 1px;
-    }
-
-    .brand-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-white);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .btn {
-      padding: 0.6rem 1.25rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--amul-red), var(--amul-dark-red));
-      color: white;
-      box-shadow: 0 4px 14px rgba(211, 47, 47, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--card-border);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-white);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--text-muted);
-    }
-
-    /* Hero Section */
-    .hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(211, 47, 47, 0.15);
-      border: 1px solid rgba(211, 47, 47, 0.3);
-      color: #FF8A80;
-      padding: 6px 16px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, #EF5350, #E53935);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 800px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 3.5rem;
-    }
-
-    /* Notice Banner */
-    .notice-card {
-      background: rgba(26, 35, 126, 0.25);
-      border: 1px solid rgba(26, 35, 126, 0.5);
-      border-left: 4px solid var(--amul-red);
-      padding: 1.25rem;
-      border-radius: 8px;
-      text-align: left;
-      max-width: 900px;
-      margin: 0 auto 3rem;
-      font-size: 0.88rem;
-      color: #E2E8F0;
-    }
-
-    /* Architecture Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto 4rem;
-      padding: 0 2rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      text-align: left;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card:hover {
-      border-color: rgba(211, 47, 47, 0.5);
-      transform: translateY(-2px);
-    }
-
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .card-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text-white);
-    }
-
-    .card-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      line-height: 1.6;
-    }
-
-    .card-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent-green);
-      background: rgba(16, 185, 129, 0.1);
-      padding: 4px 10px;
-      border-radius: 6px;
-      display: inline-block;
-      align-self: flex-start;
-    }
-
-    /* Deployment Options Guide */
-    .deploy-section {
-      background: rgba(20, 28, 46, 0.6);
-      border-top: 1px solid var(--card-border);
-      border-bottom: 1px solid var(--card-border);
-      padding: 4rem 2rem;
-    }
-
-    .deploy-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .deploy-heading {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .deploy-sub {
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .code-box {
-      background: #06090F;
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 1rem;
-      font-family: 'Courier New', Courier, monospace;
-      color: #38BDF8;
-      font-size: 0.88rem;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: auto;
-      padding: 2.5rem 2rem;
-      border-top: 1px solid var(--card-border);
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.85rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.2rem;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  
+  <!-- Local Leaflet Stylesheet -->
+  <link rel="stylesheet" href="assets/vendor/leaflet.css" />
+  
+  <!-- Master Application Stylesheet -->
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
 </head>
 <body>
-
-  <!-- Top Header -->
-  <header>
-    <a href="#" class="brand">
-      <span class="brand-badge">AMUL</span>
-      <span class="brand-title">AI Demand & Distribution Intelligence</span>
-    </a>
-    <div class="nav-links">
-      <a href="https://github.com" target="_blank" id="btn-github-nav" class="btn btn-outline">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        GitHub Repository
-      </a>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <main class="hero">
-    <div class="hero-tag">
-      <span>●</span> 16 Operational Modules • AI-Powered • MBA Capstone Standard
-    </div>
-    <h1 class="hero-title">
-      AMUL AI Demand & <span>Distribution Intelligence</span>
-    </h1>
-    <p class="hero-subtitle">
-      Enterprise decision-support layer for India's dairy cooperative network. Features multi-temperature inventory optimization, 7-day held-out ML demand forecasting, customer RFM segmentation, DPDPA 2023 email campaigns, and an evidence-based AI Analyst chatbot.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#deployment-guide" class="btn btn-primary">
-        🚀 View Deployment Instructions
-      </a>
-      <a href="#modules" class="btn btn-outline">
-        📊 Explore System Features
-      </a>
-    </div>
-
-    <!-- Academic Disclaimer -->
-    <div class="notice-card">
-      <strong>⚠️ Academic Demonstration & Synthetic Data Boundary:</strong><br />
-      This platform is an academic decision-support prototype engineered for MBA capstone evaluation. All operational distribution records and individual customer profiles are statistically realistic, explicitly labeled synthetic demonstration data. This project does NOT represent an official GCMMF production deployment.
-    </div>
-  </main>
-
-  <!-- Key Capabilities Grid -->
-  <section class="grid" id="modules">
-    <div class="card">
+  <div id="app-container">
+    <!-- ====================================================================
+         LEFT SIDEBAR (FAITHFULLY REPRODUCED FROM PANDA RETAIL SCREENSHOT)
+         ==================================================================== -->
+    <aside class="sidebar" id="sidebar">
       <div>
-        <div class="card-icon">📈</div>
-        <h3 class="card-title">Chronological ML Forecasting</h3>
-        <p class="card-desc">
-          Strict chronological train-test split (zero lookahead leakage) comparing Gradient Boosting, Random Forest, and Ridge regression against a 7-day Seasonal Naive baseline with 80% prediction intervals.
-        </p>
+        <div class="sidebar-header">
+          <div class="sidebar-logo-icon">A</div>
+          <div class="sidebar-brand-text">
+            <span class="sidebar-brand-name">Amul <span class="tag-brand">Retail</span></span>
+            <span class="sidebar-brand-sub">Distribution Intelligence</span>
+          </div>
+        </div>
+
+        <!-- Sidebar Navigation Menu -->
+        <nav class="sidebar-nav">
+          <a class="nav-item active" data-page="overview" title="Overview">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </span>
+            <span class="nav-label">Overview</span>
+          </a>
+
+          <a class="nav-item" data-page="forecasting" title="Demand Forecasting">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                <polyline points="16 7 22 7 22 13"></polyline>
+              </svg>
+            </span>
+            <span class="nav-label">Demand Forecasting</span>
+          </a>
+
+          <a class="nav-item" data-page="replenishment" title="Replenishment">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </span>
+            <span class="nav-label">Replenishment</span>
+          </a>
+
+          <a class="nav-item" data-page="network" title="Distribution Network">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                <line x1="8" y1="2" x2="8" y2="18"></line>
+                <line x1="16" y1="6" x2="16" y2="22"></line>
+              </svg>
+            </span>
+            <span class="nav-label">Distribution Network</span>
+          </a>
+
+          <a class="nav-item" data-page="economics" title="Channel Economics">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </span>
+            <span class="nav-label">Channel Economics</span>
+          </a>
+
+          <a class="nav-item" data-page="prioritisation" title="Market Prioritisation">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </span>
+            <span class="nav-label">Market Prioritisation</span>
+          </a>
+
+          <a class="nav-item" data-page="inventory" title="Inventory">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </span>
+            <span class="nav-label">Inventory</span>
+          </a>
+
+          <a class="nav-item" data-page="reports" title="Reports">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </span>
+            <span class="nav-label">Reports</span>
+          </a>
+
+          <a class="nav-item" data-page="alerts" title="Alerts">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </span>
+            <span class="nav-label">Alerts</span>
+            <span class="nav-badge" id="sidebarAlertBadge">12</span>
+          </a>
+
+          <a class="nav-item" data-page="settings" title="Settings">
+            <span class="nav-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </span>
+            <span class="nav-label">Settings</span>
+          </a>
+        </nav>
       </div>
-      <span class="card-tag">Held-Out Test Validation</span>
+
+      <!-- Bottom AI Analyst Box & Collapse -->
+      <div class="sidebar-footer">
+        <div class="sidebar-ai-box">
+          <div class="sidebar-ai-title">
+            <span>Amul Intelligence</span>
+            <span class="sidebar-ai-badge">Beta</span>
+          </div>
+          <div class="sidebar-ai-desc">
+            Ask our AI anything about your distribution & supply chain.
+          </div>
+          <button class="btn-sidebar-ai" id="openAiDrawerBtn">
+            <span>Ask Amul AI</span>
+            <span>›</span>
+          </button>
+        </div>
+
+        <button class="sidebar-collapse-btn" id="collapseSidebarBtn">
+          <span>«</span>
+          <span class="sidebar-collapse-text">Collapse</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ====================================================================
+         MAIN APPLICATION CONTENT WRAPPER
+         ==================================================================== -->
+    <main class="main-wrapper">
+      <!-- Top Application Header -->
+      <header class="app-header">
+        <div class="header-title-group">
+          <h1 class="header-main-title" id="headerPageTitle">Demand Forecasting</h1>
+          <p class="header-subtitle" id="headerPageSub">AI-powered forecasts to optimize stock, reduce waste, and improve availability.</p>
+        </div>
+
+        <div class="header-controls">
+          <!-- Date Range Selector -->
+          <div class="control-btn" id="datePickerBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <select id="headerDateSelect" style="background: transparent; border: none; color: inherit; font: inherit; outline: none; cursor: pointer;">
+              <option value="12w">Jan 12 – Apr 5, 2026</option>
+              <option value="q1">Q1 2026 (Jan – Mar)</option>
+              <option value="ytd">YTD 2026</option>
+              <option value="last30">Last 30 Days</option>
+            </select>
+          </div>
+
+          <!-- Region / State Selector (Telangana & AP Focus) -->
+          <div class="control-btn" id="regionFilterBtn">
+            <span style="font-size: 13px;">🇮🇳</span>
+            <select id="headerRegionSelect" style="background: transparent; border: none; color: inherit; font: inherit; outline: none; cursor: pointer;">
+              <option value="all">Telangana & AP</option>
+              <option value="hyderabad">Hyderabad Metro</option>
+              <option value="telangana">Telangana Hubs</option>
+              <option value="andhra">Andhra Pradesh Hubs</option>
+            </select>
+          </div>
+
+          <!-- Channel Filter Button -->
+          <div class="control-btn" id="channelFilterBtn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <select id="headerChannelSelect" style="background: transparent; border: none; color: inherit; font: inherit; outline: none; cursor: pointer;">
+              <option value="all">All Channels</option>
+              <option value="Amul Parlours">Amul Parlours</option>
+              <option value="General Trade">General Trade</option>
+              <option value="Modern Trade">Modern Trade</option>
+              <option value="Quick Commerce">Quick Commerce</option>
+              <option value="Institutional / HoReCa">Institutional / HoReCa</option>
+            </select>
+          </div>
+
+          <!-- Notification Bell -->
+          <div class="control-btn notif-btn" onclick="navigateToPage('alerts')" title="View Alerts">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <div class="notif-pulse"></div>
+          </div>
+
+          <!-- User Avatar Profile -->
+          <div class="header-avatar" title="Area Sales Manager - Telangana & AP">
+            AH
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Scrollable Dashboard Content -->
+      <div class="dashboard-content">
+        
+        <!-- ==================================================================
+             VIEW 1: OVERVIEW PAGE (FAITHFUL PANDA RETAIL LAYOUT)
+             ================================================================== -->
+        <div class="page-view active-page" id="view-overview">
+          
+          <!-- ROW 1: KPI METRIC CARDS -->
+          <section class="kpi-row">
+            <!-- Card 1: Stockouts -->
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">
+                  Stockouts
+                  <span class="info-icon" title="Percentage reduction in retail and distributor stockouts vs same period last year">ⓘ</span>
+                </span>
+                <span style="font-size: 9px; color: #F59E0B; font-weight: 600; background: rgba(245, 158, 11, 0.15); padding: 1px 4px; border-radius: 3px;">DEMO DATA</span>
+              </div>
+              <div class="kpi-main-metric" id="kpiStockoutVal">
+                -38% <span class="arrow-dir">↓</span>
+              </div>
+              <div class="kpi-footer">
+                <span>vs Jan 12 – Apr 5, 2025</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Forecast Accuracy -->
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">
+                  Forecast accuracy
+                  <span class="info-icon" title="Aggregate SKU weighted forecast accuracy on held-out test windows">ⓘ</span>
+                </span>
+              </div>
+              <div class="kpi-main-metric" id="kpiForecastAccVal">
+                94%
+              </div>
+              <div class="kpi-footer">
+                <div class="kpi-secondary-stat">
+                  <span class="sec-label">MAPE</span>
+                  <span class="sec-val">6%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Waste -->
+            <div class="kpi-card">
+              <div class="kpi-card-header">
+                <span class="kpi-title">
+                  Waste
+                  <span class="info-icon" title="Avoidable cold-chain spoilage and near-expiry returns reduction">ⓘ</span>
+                </span>
+              </div>
+              <div class="kpi-main-metric" id="kpiWasteVal">
+                -22% <span class="arrow-dir">↓</span>
+              </div>
+              <div class="kpi-footer">
+                <span>vs Jan 12 – Apr 5, 2025</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Service Level & Fill Rate (Exact Split Card) -->
+            <div class="kpi-card split-card">
+              <div class="split-card-item">
+                <span class="split-title">
+                  Service level
+                  <span class="info-icon" title="On-time in-full delivery rate to primary trade partners">ⓘ</span>
+                </span>
+                <span class="split-value" id="kpiServiceLevelVal">98.1%</span>
+              </div>
+              <div style="height: 1px; background: rgba(255, 255, 255, 0.05); width: 100%;"></div>
+              <div class="split-card-item">
+                <span class="split-title">
+                  Fill rate
+                  <span class="info-icon" title="Quantity delivered ÷ quantity ordered across verified routes">ⓘ</span>
+                </span>
+                <span class="split-value" id="kpiFillRateVal">95.4%</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ROW 2: 12-WEEK SKU FORECAST (LEFT) & GEOGRAPHIC MAP (RIGHT) -->
+          <section class="two-col-grid">
+            <!-- Left (60%): 12-Week SKU Forecast Chart Panel -->
+            <div class="card-panel">
+              <div class="card-panel-header">
+                <div class="card-panel-title">
+                  12-Week SKU Forecast
+                  <span class="info-icon" title="Historical demand plus 12-week forward projections with festival uplifts">ⓘ</span>
+                </div>
+                <div class="panel-controls">
+                  <button class="icon-control-btn" title="Expand View" onclick="navigateToPage('forecasting')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" y1="3" x2="14" y2="10"></line>
+                      <line x1="3" y1="21" x2="10" y2="14"></line>
+                    </svg>
+                  </button>
+                  <button class="icon-control-btn" title="Options">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"></circle>
+                      <circle cx="12" cy="5" r="1"></circle>
+                      <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- SKU Selector and Legend Bar -->
+              <div class="forecast-filter-bar">
+                <select class="sku-select" id="forecastSkuSelect">
+                  <!-- Populated dynamically via JS -->
+                </select>
+
+                <div class="chart-legend">
+                  <div class="legend-item" id="legendHistorical">
+                    <span class="legend-line historical"></span>
+                    <span>Historical Sales</span>
+                  </div>
+                  <div class="legend-item" id="legendBaseline">
+                    <span class="legend-line baseline"></span>
+                    <span>Forecast (Baseline)</span>
+                  </div>
+                  <div class="legend-item" id="legendPromoted">
+                    <span class="legend-line promoted"></span>
+                    <span>Forecast (Promoted)</span>
+                  </div>
+                  <div class="legend-item" id="legendBounds">
+                    <span class="legend-box bounds"></span>
+                    <span>Upper / Lower Bound</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-diamond event">◆</span>
+                    <span>Event</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Canvas Container for Chart.js -->
+              <div class="chart-canvas-container">
+                <canvas id="forecastChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Right (40%): Store-Level Forecast / Distribution Map Panel -->
+            <div class="card-panel">
+              <div class="card-panel-header">
+                <div class="card-panel-title">
+                  Store-Level Forecast (Next 4 Weeks)
+                  <span class="info-icon" title="Interactive geographic map of seeded distribution network across Hyderabad and AP markets">ⓘ</span>
+                </div>
+                <div class="panel-controls">
+                  <span style="font-size: 11px; color: var(--text-muted); margin-right: 4px;">Metric:</span>
+                  <select class="map-metric-select" id="mapMetricSelect">
+                    <option value="demand">Forecasted Demand (Units)</option>
+                    <option value="stockout">Stockout Risk Level</option>
+                    <option value="density">Outlet Cluster Density</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Real Interactive Leaflet Map Container -->
+              <div class="map-container-wrapper">
+                <div id="leaflet-map"></div>
+
+                <!-- Floating Density / Heatmap Legend (Matching Screenshot Bottom-Left) -->
+                <div class="map-legend-overlay">
+                  <span style="font-weight: 600; font-size: 9.5px; color: #FFF;">Demand Density</span>
+                  <div class="legend-spectrum">
+                    <span style="color: #10B981;">Low</span>
+                    <div class="spectrum-gradient"></div>
+                    <span style="color: #EF4444;">High</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Map Summary Status Bar & Action Controls -->
+              <div class="map-status-bar">
+                <div class="map-counts" id="mapOutletSummary">
+                  <!-- Dynamically computed from dataset -->
+                  <span>128 demo outlets displayed · 95 active · 18 stock-risk alerts</span>
+                </div>
+                <div class="map-tools-btn-group">
+                  <button class="map-tool-btn" id="mapFitBoundsBtn" title="Fit to all filtered outlets">Fit Bounds</button>
+                  <button class="map-tool-btn" id="mapToggleHeatmapBtn" title="Toggle density heat circles">Heatmap</button>
+                  <button class="map-tool-btn" id="mapResetBtn" title="Reset to Hyderabad view">Reset</button>
+                </div>
+              </div>
+
+              <div style="font-size: 9.5px; color: var(--text-dim); margin-top: 4px;">
+                * Illustrative demo locations; not verified Amul outlet records.
+              </div>
+            </div>
+          </section>
+
+          <!-- ROW 3: TOP SKUS TABLE (LEFT) & REPLENISHMENT SUGGESTIONS (RIGHT) -->
+          <section class="two-col-grid">
+            <!-- Left (60%): Top SKUs - Forecast vs Actual Table -->
+            <div class="card-panel">
+              <div class="card-panel-header">
+                <div class="card-panel-title">
+                  Top SKUs – Forecast vs Actual
+                  <span class="info-icon" title="Comparison of forward 4-week forecast vs actual throughput and MAPE accuracy">ⓘ</span>
+                </div>
+                <div class="panel-controls">
+                  <span style="font-size: 11px; color: var(--text-muted);">Sorted by Sales Volume</span>
+                </div>
+              </div>
+
+              <div class="sku-table-container">
+                <table class="compact-table">
+                  <thead>
+                    <tr>
+                      <th>SKU</th>
+                      <th>Category</th>
+                      <th>Forecast (4 Weeks)<br><span style="font-size: 9.5px; color: var(--text-dim);">Units</span></th>
+                      <th>Actual (4 Weeks)<br><span style="font-size: 9.5px; color: var(--text-dim);">Units</span></th>
+                      <th>Accuracy<br><span style="font-size: 9.5px; color: var(--text-dim);">MAPE</span></th>
+                      <th>vs Last Year<br><span style="font-size: 9.5px; color: var(--text-dim);">%</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="topSkusTableBody">
+                    <!-- Populated dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="table-footer">
+                <span>Showing top 5 of 14 strategic SKUs</span>
+                <a class="table-link" onclick="navigateToPage('forecasting')">View all SKUs ›</a>
+              </div>
+            </div>
+
+            <!-- Right (40%): Replenishment Agent Suggestions Panel -->
+            <div class="card-panel">
+              <div class="card-panel-header">
+                <div class="card-panel-title">
+                  Replenishment Agent Suggestions
+                  <span class="replenishment-badge">Beta</span>
+                  <span class="info-icon" title="Automated replenishment triggers based on target buffer and physical inventory">ⓘ</span>
+                </div>
+                <div class="panel-controls">
+                  <button class="icon-control-btn" title="Refresh Suggestions" onclick="initReplenishmentPanel()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="23 4 23 10 17 10"></polyline>
+                      <polyline points="1 20 1 14 7 14"></polyline>
+                      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Recommendation Cards List (Matching Exact Screenshot Styling) -->
+              <div class="suggestions-list" id="replenishmentSuggestionsList">
+                <!-- Populated dynamically via JS -->
+              </div>
+
+              <div class="table-footer" style="margin-top: 8px;">
+                <span style="font-size: 10.5px; color: var(--text-muted);">Click any card to review and approve order</span>
+                <a class="table-link" onclick="navigateToPage('replenishment')">View all suggestions ›</a>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- ==================================================================
+             VIEW 2: DEMAND FORECASTING FULL PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-forecasting">
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <div class="card-panel-title">SKU-Level Demand Forecasting & Error Analytics</div>
+              <span style="font-size: 11px; color: var(--text-muted);">
+                Statistical evaluation on chronological holdout sets · Strict zero-lookahead split
+              </span>
+            </div>
+            <div class="sku-table-container">
+              <table class="compact-table">
+                <thead>
+                  <tr>
+                    <th>SKU ID</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Storage Regime</th>
+                    <th>MRP / Cost</th>
+                    <th>4-Wk Forecast</th>
+                    <th>4-Wk Actual</th>
+                    <th>WAPE / MAPE</th>
+                    <th>Stockout Risk</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Full 14 SKUs -->
+                  <tr onclick="selectSkuFromTable('AMUL-FRSH-001')">
+                    <td><code>AMUL-FRSH-001</code></td>
+                    <td><strong>Amul Taaza Toned Milk (1L Pouch)</strong></td>
+                    <td>Fresh Milk</td>
+                    <td><span class="category-tag">Fresh (2-4°C)</span></td>
+                    <td>₹54.0 / ₹46.0</td>
+                    <td>196,524</td>
+                    <td>190,821</td>
+                    <td><span class="mape-val">3.2%</span></td>
+                    <td><span style="color: #EF4444; font-weight: 600;">High</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-FRSH-002')">
+                    <td><code>AMUL-FRSH-002</code></td>
+                    <td><strong>Amul Gold Full Cream Milk (500ml Pouch)</strong></td>
+                    <td>Fresh Milk</td>
+                    <td><span class="category-tag">Fresh (2-4°C)</span></td>
+                    <td>₹33.0 / ₹28.0</td>
+                    <td>128,765</td>
+                    <td>132,950</td>
+                    <td><span class="mape-val">4.7%</span></td>
+                    <td><span style="color: #F59E0B; font-weight: 600;">Moderate</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-FRSH-003')">
+                    <td><code>AMUL-FRSH-003</code></td>
+                    <td><strong>Amul Masti Dahi (400g Cup)</strong></td>
+                    <td>Curd & Fermented</td>
+                    <td><span class="category-tag">Fresh (2-4°C)</span></td>
+                    <td>₹35.0 / ₹27.0</td>
+                    <td>87,665</td>
+                    <td>85,001</td>
+                    <td><span class="mape-val">3.1%</span></td>
+                    <td><span style="color: #10B981; font-weight: 600;">Low</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-FRSH-004')">
+                    <td><code>AMUL-FRSH-004</code></td>
+                    <td><strong>Amul Fresh Malai Paneer (200g Block)</strong></td>
+                    <td>Fresh Dairy</td>
+                    <td><span class="category-tag">Fresh (2-4°C)</span></td>
+                    <td>₹92.0 / ₹74.0</td>
+                    <td>76,432</td>
+                    <td>74,881</td>
+                    <td><span class="mape-val">2.0%</span></td>
+                    <td><span style="color: #EF4444; font-weight: 600;">Critical</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-CHIL-001')">
+                    <td><code>AMUL-CHIL-001</code></td>
+                    <td><strong>Amul Pasteurised Butter (500g Carton)</strong></td>
+                    <td>Butter</td>
+                    <td><span class="category-tag">Chilled (0-4°C)</span></td>
+                    <td>₹275.0 / ₹225.0</td>
+                    <td>112,354</td>
+                    <td>108,213</td>
+                    <td><span class="mape-val">3.7%</span></td>
+                    <td><span style="color: #F59E0B; font-weight: 600;">Moderate</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-CHIL-002')">
+                    <td><code>AMUL-CHIL-002</code></td>
+                    <td><strong>Amul Processed Cheese Blocks (500g)</strong></td>
+                    <td>Cheese</td>
+                    <td><span class="category-tag">Chilled (0-4°C)</span></td>
+                    <td>₹290.0 / ₹235.0</td>
+                    <td>64,200</td>
+                    <td>61,890</td>
+                    <td><span class="mape-val">3.6%</span></td>
+                    <td><span style="color: #10B981; font-weight: 600;">Low</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-FROZ-001')">
+                    <td><code>AMUL-FROZ-001</code></td>
+                    <td><strong>Amul Real Ice Cream Vanilla Magic (1L Tub)</strong></td>
+                    <td>Ice Cream</td>
+                    <td><span class="category-tag">Frozen (-18°C)</span></td>
+                    <td>₹160.0 / ₹118.0</td>
+                    <td>95,400</td>
+                    <td>91,200</td>
+                    <td><span class="mape-val">4.4%</span></td>
+                    <td><span style="color: #EF4444; font-weight: 600;">High</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-AMBI-001')">
+                    <td><code>AMUL-AMBI-001</code></td>
+                    <td><strong>Amul Pure Cow Ghee (1L Tin)</strong></td>
+                    <td>Ghee</td>
+                    <td><span class="category-tag">Ambient</span></td>
+                    <td>₹630.0 / ₹525.0</td>
+                    <td>61,200</td>
+                    <td>59,400</td>
+                    <td><span class="mape-val">2.9%</span></td>
+                    <td><span style="color: #10B981; font-weight: 600;">Low</span></td>
+                  </tr>
+                  <tr onclick="selectSkuFromTable('AMUL-AMBI-002')">
+                    <td><code>AMUL-AMBI-002</code></td>
+                    <td><strong>Amul Kool Kesar Badam (200ml Can)</strong></td>
+                    <td>Beverages</td>
+                    <td><span class="category-tag">Ambient</span></td>
+                    <td>₹35.0 / ₹26.0</td>
+                    <td>142,000</td>
+                    <td>138,500</td>
+                    <td><span class="mape-val">2.5%</span></td>
+                    <td><span style="color: #F59E0B; font-weight: 600;">Moderate</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             VIEW 3: REPLENISHMENT (ARS) FULL PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-replenishment">
+          <div id="fullReplenishmentGrid">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             VIEW 4: DISTRIBUTION NETWORK FULL PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-network">
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <div class="card-panel-title">Telangana & Andhra Pradesh Distribution Network Summary</div>
+              <span style="font-size: 11px; color: var(--text-muted);">
+                Amul 3-Tier Cooperative Model: VDCS → District Milk Unions → GCMMF Apex → C&F Depots → Dealers → Retail Outlets
+              </span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px;">
+              <div class="kpi-card">
+                <div class="kpi-title">National Sales Offices [V]</div>
+                <div class="kpi-main-metric" style="color: #38BDF8;">90 Offices</div>
+                <div class="kpi-footer"><span>Amul Official Webpage</span></div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Wholesale Dealers [V]</div>
+                <div class="kpi-main-metric" style="color: #38BDF8;">10,000</div>
+                <div class="kpi-footer"><span>Published network figures</span></div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Retail Outlets [V]</div>
+                <div class="kpi-main-metric" style="color: #38BDF8;">10 Lakh</div>
+                <div class="kpi-footer"><span>Published footprint count</span></div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Active Demo Outlets [TA]</div>
+                <div class="kpi-main-metric" style="color: #10B981;">128 Outlets</div>
+                <div class="kpi-footer"><span>Seeded Hyderabad & AP records</span></div>
+              </div>
+            </div>
+            <p style="font-size: 11.5px; color: var(--text-secondary); line-height: 1.6;">
+              Distribution operations in Telangana and Andhra Pradesh are serviced through the Secunderabad Sales Depot, Uppal Cold Storage, and Vijayawada Auto Nagar Regional Hub. Primary delivery routes maintain daily replenishment for fresh pouch milk and curd, while ambient lines (Ghee, Kool, Mithai Mate) operate on weekly scheduled replenishment.
+            </p>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             VIEW 5: CHANNEL ECONOMICS PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-economics">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- ==================================================================
+             VIEW 6: MARKET PRIORITISATION PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-prioritisation">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- ==================================================================
+             VIEW 7: INVENTORY PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-inventory">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- ==================================================================
+             VIEW 8: REPORTS & EXPORT PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-reports">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- ==================================================================
+             VIEW 9: ALERTS REGISTER PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-alerts">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- ==================================================================
+             VIEW 10: SETTINGS & GOVERNANCE PAGE
+             ================================================================== -->
+        <div class="page-view" id="view-settings">
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <div class="card-panel-title">Academic Governance & Evidence Boundary Register</div>
+              <button class="btn btn-danger" onclick="resetAllDemoData()">Reset All Demo Data</button>
+            </div>
+            <div class="sku-table-container">
+              <table class="compact-table">
+                <thead>
+                  <tr>
+                    <th>Evidence Topic</th>
+                    <th>Status</th>
+                    <th>What Can Responsibly Be Stated</th>
+                    <th>Boundary / Caveat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>FY2025–26 Turnover</strong></td>
+                    <td><span style="color: #38BDF8; font-weight: 700;">[V] Verified</span></td>
+                    <td>Amul brand turnover &gt;₹1 lakh crore (~11% growth); GCMMF turnover was ₹73,450 crore (+11.4% YoY).</td>
+                    <td>Distinct scopes: do not sum brand turnover and GCMMF turnover or treat them as channel revenue.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Distribution Footprint</strong></td>
+                    <td><span style="color: #38BDF8; font-weight: 700;">[V] Verified</span></td>
+                    <td>90 sales offices, 10,000 dealers, and 10 lakh retailers published on Amul About Us page.</td>
+                    <td>Published historical figures, not a freshly audited 2026 census.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Channel Revenue Split</strong></td>
+                    <td><span style="color: #EF4444; font-weight: 700;">[Evidence Gap]</span></td>
+                    <td>No credible channel-wise revenue split established in public reviewed sources.</td>
+                    <td>Do not invent revenue share by kirana, modern trade, e-commerce, or quick commerce.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>City Sales Performance</strong></td>
+                    <td><span style="color: #EF4444; font-weight: 700;">[Evidence Gap]</span></td>
+                    <td>Public evidence does not establish Amul sales by city at a comparable level.</td>
+                    <td>Use a transparent market-readiness scoring model, not a ranking of Amul's actual city sales.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>GST Rationalization</strong></td>
+                    <td><span style="color: #38BDF8; font-weight: 700;">[V] Verified</span></td>
+                    <td>PIB release (22 Sep 2025): UHT milk & packaged paneer nil; butter/ghee/cheese/ice cream reduced to 5%.</td>
+                    <td>Use exact product conditions; do not generalize to every dairy product.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Channel Margins & Fees</strong></td>
+                    <td><span style="color: #F59E0B; font-weight: 700;">[3P] Third-Party</span></td>
+                    <td>Secondary trade guides cite margins/fees; Amul contract terms not public.</td>
+                    <td>Treat ranges as indicative only; verify actual contracts before investment decisions.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Proposed 10-Wk Pilot</strong></td>
+                    <td><span style="color: #10B981; font-weight: 700;">[PT] Proposed</span></td>
+                    <td>10-week baseline pilot with high-frequency SKUs in Hyderabad / Telangana.</td>
+                    <td>Clearly identify as proposed planning, not existing Amul operational policy.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Application Footer Status Bar -->
+      <footer class="app-footer-bar">
+        <div class="footer-left">
+          <span>All data as of Apr 27, 2026 02:00 AM IST</span>
+          <span style="cursor: pointer;" onclick="location.reload()" title="Refresh Data">↺</span>
+        </div>
+        <div class="footer-right">
+          <span>Forecast model: <strong>Amul ARS Engine v2.4 (GCMMF Anand Field Edition)</strong></span>
+          <span>·</span>
+          <a href="#" onclick="askAiPreset('Explain the ARS forecasting methodology and field internship findings.'); return false;">Learn more</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ====================================================================
+       REPLENISHMENT ORDER REVIEW MODAL DIALOG
+       ==================================================================== -->
+  <div class="modal-overlay" id="replenishmentReviewModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modalSkuTitle">AMUL-FRSH-001 - Amul Taaza Toned Milk (1L)</div>
+          <span style="font-size: 11px; color: var(--text-muted);" id="modalStoreName">Store Name · Location</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeReplenishmentModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="background: rgba(255, 255, 255, 0.04); padding: 12px; border-radius: 6px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <div>
+            <span style="font-size: 10px; color: var(--text-muted); display: block;">Physical Stock</span>
+            <strong style="font-size: 14px; color: #FFFFFF;" id="modalPhysicalStock">280 Units</strong>
+          </div>
+          <div>
+            <span style="font-size: 10px; color: var(--text-muted); display: block;">Target Buffer</span>
+            <strong style="font-size: 14px; color: #FFFFFF;" id="modalTargetStock">1,400 Units</strong>
+          </div>
+          <div>
+            <span style="font-size: 10px; color: var(--text-muted); display: block;">Lead Time</span>
+            <strong style="font-size: 14px; color: #38BDF8;" id="modalLeadTime">1 Day</strong>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 11.5px; font-weight: 600; color: #FFFFFF; display: block; margin-bottom: 6px;">
+            Recommended Order Quantity (Calculated via ARS Formula)
+          </label>
+          <div style="display: flex; gap: 8px;">
+            <input type="number" id="modalReorderQtyInput" style="
+              flex-grow: 1; background: var(--bg-input); border: 1px solid var(--border-light);
+              color: #FFFFFF; padding: 8px 12px; font-size: 14px; font-weight: 700; border-radius: 6px; outline: none;
+            " />
+            <span style="display: flex; align-items: center; color: var(--text-muted); font-size: 12px;">Units</span>
+          </div>
+          <span style="font-size: 10px; color: var(--text-muted); margin-top: 4px; display: block;">
+            Formula: <code>max(0, Target Stock - Physical Stock)</code> rounded to case pack multiples.
+          </span>
+        </div>
+
+        <div>
+          <span style="font-size: 11px; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">
+            Diagnostic Rationale:
+          </span>
+          <p id="modalReasonText" style="font-size: 11.5px; color: #E2E8F0; line-height: 1.45; background: rgba(229, 57, 53, 0.1); border-left: 3px solid var(--amul-red); padding: 8px 10px; border-radius: 0 4px 4px 0;">
+            Morning stockout risk triggered by early demand velocity.
+          </p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeReplenishmentModal()">Cancel</button>
+        <button class="btn btn-danger" onclick="rejectCurrentSuggestion()">Reject Order</button>
+        <button class="btn btn-primary" onclick="approveCurrentSuggestion()">Approve Order Dispatch</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       AI ASSISTANT SLIDE-OUT DRAWER
+       ==================================================================== -->
+  <aside class="ai-drawer" id="aiDrawer">
+    <div class="drawer-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 14px; font-weight: 700; color: #FFFFFF;">Amul AI Analyst</span>
+        <span class="sidebar-ai-badge">Decision Support</span>
+      </div>
+      <button class="modal-close-btn" id="closeAiDrawerBtn">✕</button>
     </div>
 
-    <div class="card">
-      <div>
-        <div class="card-icon">❄️</div>
-        <h3 class="card-title">Multi-Temperature Inventory</h3>
-        <p class="card-desc">
-          Calibrated safety stock and reorder point formulas across Fresh (2-4°C, 48h shelf life), Chilled (0-4°C), Frozen (-18°C), and Ambient dairy channels to minimize stockouts and avoid souring.
-        </p>
-      </div>
-      <span class="card-tag">Thermodynamic Rules</span>
-    </div>
-
-    <div class="card">
-      <div>
-        <div class="card-icon">👥</div>
-        <h3 class="card-title">Customer-Wise RFM Intelligence</h3>
-        <p class="card-desc">
-          120 synthetic customer profiles categorized into Loyal, High-Value, New, and Declining segments. Recommends explainable next-best actions with human-in-the-loop approval workflows.
-        </p>
-      </div>
-      <span class="card-tag">Customer Intelligence</span>
-    </div>
-
-    <div class="card">
-      <div>
-        <div class="card-icon">💬</div>
-        <h3 class="card-title">Amul AI Analyst Chatbot</h3>
-        <p class="card-desc">
-          Conversational agent backed by deterministic, audited calculation tools over active distribution records. Guarantees zero hallucinations and complete data lineage for every metric.
-        </p>
-      </div>
-      <span class="card-tag">Audited Calculations</span>
-    </div>
-
-    <div class="card">
-      <div>
-        <div class="card-icon">✉️</div>
-        <h3 class="card-title">DPDPA 2023 Campaign Centre</h3>
-        <p class="card-desc">
-          Multi-channel email and in-app communications adhering strictly to India's Digital Personal Data Protection Act (DPDPA 2023) and TRAI quiet hours guardrails (9 PM to 9 AM IST).
-        </p>
-      </div>
-      <span class="card-tag">Regulatory Compliance</span>
-    </div>
-
-    <div class="card">
-      <div>
-        <div class="card-icon">📑</div>
-        <h3 class="card-title">Downloadable MBA-Grade PDF Report</h3>
-        <p class="card-desc">
-          Automated publication-grade ReportLab Platypus PDF generator compiling executive KPIs, high-res distribution charts, customer RFM tables, and verified government citations.
-        </p>
-      </div>
-      <span class="card-tag">Automated ReportLab Engine</span>
-    </div>
-  </section>
-
-  <!-- Deployment Options Section -->
-  <section class="deploy-section" id="deployment-guide">
-    <div class="deploy-container">
-      <h2 class="deploy-heading">Deployment & Launch Guide</h2>
-      <p class="deploy-sub">Follow these instructions to run locally or deploy to GitHub and the cloud.</p>
-
-      <h3 style="color: #EF5350; margin-top: 1.5rem; font-size: 1.3rem;">Option 1: Push to GitHub & Run with Streamlit Community Cloud (Recommended)</h3>
-      <p style="color: var(--text-muted); margin-top: 0.5rem;">
-        Streamlit is a stateful web application that requires continuous WebSockets. <strong>Streamlit Community Cloud</strong> connects natively to your GitHub repository for free 1-click hosting:
-      </p>
-      <div class="code-box">
-# 1. Create a new repository on https://github.com/new
-# 2. In your terminal, link and push to your GitHub repo:
-git remote add origin https://github.com/YOUR_USERNAME/amul-demand-intelligence.git
-git branch -M main
-git push -u origin main
-
-# 3. Visit https://share.streamlit.io, connect your GitHub account,
-# select repository 'amul-demand-intelligence', branch 'main', and main file 'app.py'.
-      </div>
-
-      <h3 style="color: #60A5FA; margin-top: 2rem; font-size: 1.3rem;">Option 2: Deploy Landing Portal on Vercel</h3>
-      <p style="color: var(--text-muted); margin-top: 0.5rem;">
-        This repository includes <code>vercel.json</code> configured to deploy this clean web portal directly on Vercel:
-      </p>
-      <div class="code-box">
-# Deploy with Vercel CLI or via GitHub integration:
-npx vercel deploy --prod
-      </div>
-
-      <h3 style="color: #34D399; margin-top: 2rem; font-size: 1.3rem;">Option 3: Run Full Interactive Dashboard Locally</h3>
-      <div class="code-box">
-# In Windows PowerShell:
-cd C:\Users\harsh\.gemini\antigravity-ide\scratch\amul-demand-intelligence
-pip install -r requirements.txt
-streamlit run app.py
+    <div class="drawer-messages" id="aiDrawerMessages">
+      <div class="ai-bubble">
+        Hello! I am your <strong>Amul Distribution Intelligence AI</strong>.<br>
+        Ask me about stockout risks, replenishment calculations, channel economics, or city prioritization models grounded in the MBA distribution playbook.
       </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>AMUL | AI Demand & Distribution Intelligence System • Academic Decision-Support Prototype</p>
-    <p style="margin-top: 6px;">Adheres to DPDPA 2023 & TRAI TCCCPR standards • Synthetic data demonstration</p>
-  </footer>
+    <!-- Quick Query Chips -->
+    <div style="padding: 6px 14px; display: flex; gap: 6px; overflow-x: auto; border-top: 1px solid var(--border-subtle);">
+      <button class="control-btn" style="font-size: 10px; padding: 3px 8px;" onclick="askAiPreset('What is Amul FY25-26 turnover?')">
+        Turnover [V]
+      </button>
+      <button class="control-btn" style="font-size: 10px; padding: 3px 8px;" onclick="askAiPreset('How is the replenishment quantity calculated?')">
+        ARS Formula [TA]
+      </button>
+      <button class="control-btn" style="font-size: 10px; padding: 3px 8px;" onclick="askAiPreset('Explain channel contribution margin.')">
+        Channel Margin [PT]
+      </button>
+    </div>
 
+    <div class="drawer-input-row">
+      <input type="text" class="drawer-input" id="aiDrawerInput" placeholder="Ask anything about Amul distribution..." />
+      <button class="btn btn-primary" id="sendAiMsgBtn">Send</button>
+    </div>
+  </aside>
+
+  <!-- Local Leaflet and Chart.js Scripts -->
+  <script src="assets/vendor/leaflet.js"></script>
+  <script src="assets/vendor/chart.js"></script>
+
+  <!-- Application Logic Scripts -->
+  <script src="assets/js/amul-data.js"></script>
+  <script src="assets/js/dashboard.js"></script>
 </body>
 </html>

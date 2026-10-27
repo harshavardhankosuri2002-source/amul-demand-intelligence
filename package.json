@@ -1,0 +1,23 @@
+{
+  "name": "amul-distribution-intelligence",
+  "version": "1.0.0",
+  "description": "Amul Distribution Intelligence Dashboard - AI-powered distribution planning, replenishment and market intelligence",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 3000",
+    "dev": "python -m http.server 3000",
+    "serve": "python -m http.server 3000",
+    "streamlit": "streamlit run app.py"
+  },
+  "keywords": [
+    "amul",
+    "supply-chain",
+    "analytics",
+    "dashboard",
+    "distribution-intelligence",
+    "leaflet",
+    "replenishment"
+  ],
+  "author": "Antigravity Team",
+  "license": "MIT"
+}

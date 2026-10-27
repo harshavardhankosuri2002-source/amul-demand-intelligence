@@ -172,6 +172,7 @@ with st.sidebar:
     nav_module = st.radio(
         "Supply Chain & Customer Module",
         [
+            "0. Distribution Intelligence Dashboard (Panda Retail Theme)",
             "1. Executive Overview",
             "2. Demand Forecasting",
             "3. Inventory & Replenishment",
@@ -345,6 +346,26 @@ if filtered_df.empty:
 inv_summary = compute_sku_inventory_status(filtered_df)
 exec_kpis = compute_executive_kpis(filtered_df, inv_summary)
 
+
+# ==========================================
+# MODULE 0: DISTRIBUTION INTELLIGENCE DASHBOARD (PANDA RETAIL THEME)
+# ==========================================
+if "0. Distribution Intelligence Dashboard" in nav_module:
+    st.markdown("### 🏬 Amul Distribution Intelligence Dashboard")
+    st.caption("Panda Retail analytics layout, dark theme, Leaflet distribution map, and ARS replenishment engine.")
+    st.markdown("""
+        <div style="background: #10141D; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 18px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <strong style="color: #FFF; font-size: 0.95rem;">Standalone Distribution Intelligence Web App Active</strong><br>
+                <span style="color: #94A3B8; font-size: 0.8rem;">Full interactive map (Leaflet), Chart.js 12-week forecast, and automated replenishment review queue running on port 3000.</span>
+            </div>
+            <a href="http://localhost:3000" target="_blank" style="background: #E53935; color: #FFF; padding: 7px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(229,57,53,0.4);">
+                Open Fullscreen Dashboard ↗
+            </a>
+        </div>
+    """, unsafe_allow_html=True)
+    import streamlit.components.v1 as components
+    components.iframe("http://localhost:3000", height=920, scrolling=True)
 
 # ==========================================
 # MODULE 1: EXECUTIVE OVERVIEW
